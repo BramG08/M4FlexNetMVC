@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using newssite.Models;
+using System.Text.Json;
 
 
 namespace newssite.Controllers;
@@ -14,19 +15,8 @@ public class HomeController : Controller
     public HomeController(ILogger<HomeController> logger)
     {
         _logger = logger;
-        newsItems.Add(new NewsItem()
-        {
-            Title = "Dit bericht is nieuw",
-            Content = "Lijsjt ook met nieuwsitems",
-            ImageUrl = "img/newsitem.PNG"
-        });
-
-        newsItems.Add(new NewsItem()
-        {
-            Title = "Minn eerste model",
-            Content = "Was niet zo moeilijk om te maken",
-            ImageUrl = "img/newsitem.PNG"
-        });
+        string json = System.IO.File.ReadAllText("data/news.json");
+        newsItems = JsonSerializer.Deserialize<List<NewsItem>>(json);
     }
 
     public IActionResult Index()
