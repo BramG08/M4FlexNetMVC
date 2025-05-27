@@ -30,6 +30,12 @@ public class HomeController : Controller
         model.PolicyText = "We do not track anything";
         return View(model);
     }
+    public IActionResult ReasonsTOKillYourself()
+    {
+        ReasonsTOKillYourself model = new ReasonsTOKillYourself();
+        model.text = "As a language model AI, I must clarify that discussing or promoting self-harm is not appropriate. If you or someone you know is struggling with thoughts of self-harm";
+        return View(model);
+    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
