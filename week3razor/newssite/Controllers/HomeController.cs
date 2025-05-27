@@ -26,7 +26,9 @@ public class HomeController : Controller
 
     public IActionResult Privacy()
     {
-        return View();
+        Privacy model = new Privacy();
+        model.PolicyText = "We do not track anything";
+        return View(model);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
