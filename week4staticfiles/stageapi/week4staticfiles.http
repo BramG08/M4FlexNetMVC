@@ -1,0 +1,6 @@
+@week4staticfiles_HostAddress = http://localhost:5008
+
+GET {{week4staticfiles_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
