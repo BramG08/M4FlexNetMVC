@@ -20,7 +20,7 @@ public class HuisDataContext
             });
         }
     }
-    public void AddVerbruik(EnergyVerbuik item)
+    public void AddVerbruik(EnergyVerbruik item)
     { 
         using (SqliteConnection connection = new SqliteConnection("Data Source=" + DBDPath))
         {
@@ -33,12 +33,12 @@ public class HuisDataContext
                 VALUES (@verbruikKwh, @datum);"
           ;
             command.Parameters.Add(new SqliteParameter("@verbruikKwh"));
-          command.Parameters.Add("@datum", item.Datum.ToString("yyyy-MM-dd HH:mm:ss"));
+            command.Parameters.Add("@datum", item.Datum.ToString("yyyy-MM-dd HH:mm:ss"));
             command.ExecuteNonQuery();
         }
     }
 
-    public List<EnergyVerbruik> GetEnergyVebruik()
+    public List<EnergyVerbruik> GetEnergyVerbruik()
     {
         List<EnergyVerbruik> items = new List<EnergyVerbruik>();
         using (SqliteConnection connection = new SqliteConnection("Data Source=" + DBDPath))
