@@ -40,7 +40,27 @@ public class HuisDataContext
 
     public List<EnergyVerbruik> GetEnergyVebruik()
     {
-        return new List<EnergyVerbruik>() { new EnergyVerbruik() };
+        List<EnergyVerbruik> items = new List<EnergyVerbruik>();
+        using (SqliteConnection connection = new SqliteConnection("Data Source=" + DBDPath))
+        {
+            connection.Open();
+            SqliteCommand command = connection.CreateCommand();
+
+            command.CommandText = "SELECT * from EnergyVerbruik ORDER BY Datum DESC;";
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    EnergyVerbruik item = new EnergyVerbruik()
+                    {
+                        Datum = DateTime.Parse(reader["Datum"] as string),
+                        VerbruikKwh = (long)reader["VerbruikKwh"],
+                    };
+                    items.Add(item);
+                }
+            }
+            return items;
+        }
     }
 
     private bool CreateDatabaseIfNotExists()
