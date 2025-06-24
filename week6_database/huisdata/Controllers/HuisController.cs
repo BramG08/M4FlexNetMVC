@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using huisdata.Models;
+using huisdata.DBData;
 
 namespace huisdata.Controllers;
 
@@ -7,22 +8,20 @@ namespace huisdata.Controllers;
 [Route("[controller]")]
 public class HuisController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
 
-    private readonly ILogger<WeatherForecastController> _logger;
+    private readonly ILogger<HuisController> _logger;
+    private readonly HuisDataContext huisContext;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public HuisController(ILogger<HuisController> logger, HuisDataContext huisContext)
     {
         _logger = logger;
+        this.huisContext = huisContext;
     }
 
     [HttpGet()]
     public IEnumerable<EnergyVerbruik> Get()
     {
-        return new List<EnergyVerbruik>() { new EnergyVerbruik() };
+        return huisContext.GetEnergyVebruik();
     }
     
 }
