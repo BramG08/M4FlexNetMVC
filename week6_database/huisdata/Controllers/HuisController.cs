@@ -21,7 +21,7 @@ public class HuisController : ControllerBase
     [HttpGet()]
     public IEnumerable<EnergyVerbruik> Get()
     {
-        return huisContext.GetEnergyVebruik();
+        return huisContext.GetEnergyVerbruik();
     }
     
 }

@@ -32,8 +32,8 @@ public class HuisDataContext
                 INSERT INTO EnergyVerbruik (VerbruikKwh, Datum)
                 VALUES (@verbruikKwh, @datum);"
           ;
-            command.Parameters.Add(new SqliteParameter("@verbruikKwh"));
-            command.Parameters.Add("@datum", item.Datum.ToString("yyyy-MM-dd HH:mm:ss"));
+            command.Parameters.Add(new SqliteParameter("@verbruikKwh",item.VerbruikKwh ));
+            command.Parameters.Add(new SqliteParameter("@datum", item.Datum)) ;
             command.ExecuteNonQuery();
         }
     }
